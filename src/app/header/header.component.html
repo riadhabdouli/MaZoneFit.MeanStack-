@@ -1,0 +1,32 @@
+<mat-toolbar>
+    <span>
+      <a mat-button routerLink="/"> Home </a>
+    </span>
+    <span class="spacer"></span>
+    <ul>
+      <li>
+        <a mat-button [routerLink]="['/profile',username]" routerLinkActive="mat-accent">Profile</a>
+      </li>
+      <li >
+        <button mat-button [matMenuTriggerFor]="menu">Plans</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Workout Plan</button>
+          <button mat-menu-item>Nutrition Plan</button>
+        </mat-menu>
+      </li>
+      <li>
+        <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
+      </li>
+      <li>
+        <a mat-button routerLink="/Payment" routerLinkActive="mat-accent">Payment</a>
+      </li>
+      <li>
+           <mat-icon matBadge="15" matBadgeColor="warn"><span class="material-icons">
+            notifications
+          </span></mat-icon>
+      </li>
+      <li >
+        <button mat-button >Logout</button>
+      </li>
+    </ul>
+</mat-toolbar>
