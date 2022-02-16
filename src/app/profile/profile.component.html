@@ -1,0 +1,30 @@
+<mat-card>
+  <form [formGroup]="form" id="profile">
+    
+      <mat-form-field appearance="fill">
+        <mat-label> Username </mat-label>
+        <input matInput type="text" formControlName="username" placeholder="username">
+      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label> Password </mat-label>
+      <input matInput type="text" formControlName="password" placeholder="password">
+     </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label> Email </mat-label>
+        <input matInput rows="4" formControlName="email" placeholder="email">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label> FullName </mat-label>
+      <input matInput type="text" formControlName="fullname" placeholder="fullname">
+      </mat-form-field> 
+      <mat-form-field appearance="fill">
+        <mat-label> Height </mat-label>
+        <input matInput type="text" formControlName="height" placeholder="height">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label> weight </mat-label>
+        <input matInput type="text" formControlName="weight" placeholder="weight">
+      </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </form>
+</mat-card>
