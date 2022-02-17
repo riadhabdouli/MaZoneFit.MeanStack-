@@ -7,13 +7,7 @@ const app = express();
 const memberRoutes = require("./routes/profile");
 const trainerRoutes = require("./routes/trainer");
 
-mongoose.connect("mongodb+srv://yesser:U38IdpYf0n6Stbno@cluster0.c00dc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-.then(()=> {
-  console.log('Connected to database !');
-})
-.catch(()=>{
-  console.log('Connection failed !');
-});
+
 
 app.use(bodyParser.json());
 
