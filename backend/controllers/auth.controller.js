@@ -12,6 +12,7 @@ exports.register=async(req,res)=>{
 	});
 
 	const matched = await v.check();
+	
 
 	if (!matched) {
 		return res.status(422).send(v.errors);
