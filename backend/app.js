@@ -7,6 +7,15 @@ const app = express();
 const memberRoutes = require("./routes/profile");
 const trainerRoutes = require("./routes/trainer");
 
+// Please add you're connection string to connect to database
+mongoose.connect("")
+.then(()=> {
+  console.log('Connected to database !');
+})
+.catch(()=>{
+  console.log('Connection failed !');
+});
+
 
 app.use(bodyParser.json());
 
