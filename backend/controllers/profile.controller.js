@@ -3,6 +3,7 @@ const bcrypt=require('bcrypt');
 const User=require('./../models/trainer');
 const jwt=require('jsonwebtoken');
 const fs=require('fs');
+
 exports.current_user=(req,res)=>{
 	return res.status(200).send({
 		message:'Current user data successfully fetched',
