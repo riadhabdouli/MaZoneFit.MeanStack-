@@ -3,12 +3,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require ("mongoose");
 const app = express();
-
+require('dotenv').config();
 const memberRoutes = require("./routes/profile");
 const trainerRoutes = require("./routes/trainer");
 
-// Please add you're connection string to connect to database
-mongoose.connect("")
+let connection = process.env.connection;
+
+
+mongoose.connect(connection)
 .then(()=> {
   console.log('Connected to database !');
 })
