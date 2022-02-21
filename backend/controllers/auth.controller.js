@@ -1,9 +1,10 @@
 const { Validator } = require('node-input-validator');
-const user =require('../models/trainer');
-const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken');
 
-exports.register=async(req,res)=>{
+const user=require('./../models/user.model');
+const bcrypt=require('bcrypt');
+const jwt=require('jsonwebtoken');
+exports.register=async (req,res)=>{
+
 	const v = new Validator(req.body, {
 		first_name:'required|minLength:2|maxLength:100',
 		last_name:'required|minLength:2|maxLength:100',
@@ -33,6 +34,7 @@ exports.register=async(req,res)=>{
 		});
 
 	}catch(err){
+
 		return res.status(400).send({
 			message:err.message,
 			data:err

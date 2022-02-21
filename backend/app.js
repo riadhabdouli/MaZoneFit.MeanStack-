@@ -1,35 +1,43 @@
-const path = require("path");
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require ("mongoose");
-const app = express();
-require('dotenv').config();
-const memberRoutes = require("./routes/profile");
-const trainerRoutes = require("./routes/trainer");
+const express=require('express');
+const app=express();
+const bodyParser = require('body-parser');
 
-
-let connection = process.env.connection;
-mongoose.connect(connection)
-.then(()=> {
-  console.log('Connected to database !');
-})
-.catch(()=>{
-  console.log('Connection failed !');
-});
-
-
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false,limit :'50mb' }));
+// parse application/json
 app.use(bodyParser.json());
 
-app.use((req,res,next) => {
-  res.setHeader('Access-Control-Allow-Origin',"*");
-  res.setHeader("Access-Control-Allow-Headers",
-  "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.setHeader("Access-Control-Allow-Methods",
-  "GET, POST, PATCH, PUT , DELETE, OPTIONS");
-  next();
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
+require('dotenv').config();
+const cors = require('cors');
+app.use(cors());
+global.publicPath=__dirname+'/public';
+
+app.use(function(req, res, next){
+	global.req=req;
+	next();
 });
 
-app.use("/api/profile",memberRoutes);
-app.use("/api" , trainerRoutes);
+app.use(express.static(__dirname + '/public'));
 
-module.exports =app;
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/MeanStackDB', {useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
+	console.log('mongodb connected successfully');
+}).catch((err)=>{
+	console.log(err);
+});
+
+require('./middleware/extend-node-input-validator')
+require('./routes/index')(app);
+
+const http=require('http');
+const server=http.Server(app);
+const port=process.env.PORT||3000;
+server.listen(port,()=>{
+	console.log(`server is running on port localhost:${port}`);
+});
+
+
+

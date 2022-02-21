@@ -1,6 +1,6 @@
- const { Validator } = require('node-input-validator');
+const { Validator } = require('node-input-validator');
 const bcrypt=require('bcrypt');
-const User=require('./../models/trainer');
+const User=require('./../models/user.model');
 const jwt=require('jsonwebtoken');
 const fs=require('fs');
 
