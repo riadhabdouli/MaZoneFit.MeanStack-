@@ -15,6 +15,8 @@ exports.api=(req,res,next)=>{
 
 	next();
 }
+
+
 exports.auth=(req,res,next)=>{
 	var token=req.headers['authorization'];
 	if(!token){
