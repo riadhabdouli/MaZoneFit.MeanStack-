@@ -1,13 +1,14 @@
 const mongoose=require('mongoose');
-const bcrypt= require('bcrypt');
-
+const bcrypt=require('bcrypt');
 const schema = new mongoose.Schema({
  first_name: { type:String, default : '' },
  last_name: { type:String, default : '' },
- email: { type:String, default : '' },
- password: { type:String ,required : true},
-  profile_image: { type:String, default : '' },
+ email: String,
+ password: String,
+ profile_image: { type:String, default : '' },
  profession: { type:String, default : '' }
+},{
+	timestamps:true
 });
 
 schema.pre('save', function(next) {
@@ -29,4 +30,6 @@ schema.pre('save', function(next) {
     });
 });
 
-module.exports = mongoose.model('trainer',schema);
+const User = mongoose.model('User', schema);
+
+module.exports = User;
