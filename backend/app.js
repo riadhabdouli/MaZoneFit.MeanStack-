@@ -7,9 +7,8 @@ require('dotenv').config();
 const memberRoutes = require("./routes/profile");
 const trainerRoutes = require("./routes/trainer");
 
+
 let connection = process.env.connection;
-
-
 mongoose.connect(connection)
 .then(()=> {
   console.log('Connected to database !');
