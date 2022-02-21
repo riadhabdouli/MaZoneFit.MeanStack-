@@ -1,6 +1,6 @@
 const { Validator } = require('node-input-validator');
 const bcrypt=require('bcrypt');
-const User=require('./../models/user.model');
+const Member=require('./../models/member.model');
 const jwt=require('jsonwebtoken');
 const fs=require('fs');
 
@@ -28,22 +28,22 @@ exports.change_password=async(req,res)=>{
 		if(bcrypt.compareSync(req.body.old_password,current_user.password)){
 
 			let hashPassword=bcrypt.hashSync(req.body.new_password,10);
-			await User.updateOne({
+			await Member.updateOne({
 				_id:current_user._id
 			},{
 				password:hashPassword
 			});
 
-			let userData=await User.findOne({_id:current_user._id})
+			let memberData=await Member.findOne({_id:current_user._id})
 
 			let jwt_secret=process.env.JWT_SECRET||'mysecret';
 			let token=jwt.sign({
-			  data: userData
+			  data: memberData
 			}, jwt_secret, { expiresIn: '12h' });
 
 			return res.status(200).send({
 				message:'Password successfully updated',
-				data:userData,
+				data:memberData,
 				token:token
 			});
 
@@ -104,7 +104,7 @@ exports.update_profile=async (req,res)=>{
 			var image_file_name=current_user.profile_image;
 		}
 
-		await User.updateOne({
+		await Member.updateOne({
 			_id:current_user._id
 		},{
 			first_name:req.body.first_name,
@@ -113,15 +113,15 @@ exports.update_profile=async (req,res)=>{
 			profession:req.body.profession?req.body.profession:''
 		});
 
-			let userData=await User.findOne({_id:current_user._id})
+			let memberData=await Member.findOne({_id:current_user._id})
 			let jwt_secret=process.env.JWT_SECRET||'mysecret';
 			let token=jwt.sign({
-			  data: userData
+			  data: memberData
 			}, jwt_secret, { expiresIn: '12h' });
 
 			return res.status(200).send({
 				message:'Profile successfully updated',
-				data:userData,
+				data:memberData,
 				token:token
 			});
 

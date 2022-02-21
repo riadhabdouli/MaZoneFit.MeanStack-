@@ -1,6 +1,6 @@
 const { Validator } = require('node-input-validator');
 
-const user=require('./../models/user.model');
+const member=require('./../models/member.model');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 exports.register=async (req,res)=>{
@@ -8,7 +8,7 @@ exports.register=async (req,res)=>{
 	const v = new Validator(req.body, {
 		first_name:'required|minLength:2|maxLength:100',
 		last_name:'required|minLength:2|maxLength:100',
-		email: 'required|email|unique:User,email',
+		email: 'required|email|unique:Member,email',
 		password: 'required'
 	});
 
@@ -20,17 +20,17 @@ exports.register=async (req,res)=>{
 	}
 
 	try {
-		const newUser = new user({
+		const newMember = new member({
 		 first_name:req.body.first_name,
 		 last_name:req.body.last_name,
 		 email:req.body.email,
 		 password:req.body.password 
 		});
 
-		let userData=await newUser.save();
+		let memberData=await newMember.save();
 		return res.status(200).send({
 			message:'Registration successfull',
-			data:userData
+			data:memberData
 		});
 
 	}catch(err){
@@ -56,19 +56,19 @@ exports.login=async (req,res)=>{
 	}
 
 	try{
-		let userData=await user.findOne({email:req.body.email});
-		if(userData){
+		let memberData=await member.findOne({email:req.body.email});
+		if(memberData){
 
-			if(bcrypt.compareSync(req.body.password, userData.password)){
+			if(bcrypt.compareSync(req.body.password, memberData.password)){
 
 				let jwt_secret=process.env.JWT_SECRET||'mysecret';
 				let token=jwt.sign({
-				  data: userData
+				  data: memberData
 				}, jwt_secret, { expiresIn: '12h' });
 
 				return res.status(200).send({
 					message:'Login successfull',
-					data:userData,
+					data:memberData,
 					token:token
 				});
 
@@ -83,7 +83,7 @@ exports.login=async (req,res)=>{
 
 		}else{
 			return res.status(400).send({
-				message:'User is not registered',
+				message:'Member is not registered',
 				data:{}
 			});
 		}
