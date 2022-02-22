@@ -48,9 +48,9 @@ exports.login=async (req,res)=>{
 		email: 'required|email',
 		password: 'required'
 	});
-
+    
 	const matched = await v.check();
-
+    
 	if (!matched) {
 		return res.status(422).send(v.errors);
 	}
@@ -58,24 +58,22 @@ exports.login=async (req,res)=>{
 	try{
 		let memberData=await member.findOne({email:req.body.email});
 		if(memberData){
-
 			if(bcrypt.compareSync(req.body.password, memberData.password)){
-
 				let jwt_secret=process.env.JWT_SECRET||'mysecret';
 				let token=jwt.sign({
 				  data: memberData
-				}, jwt_secret, { expiresIn: '12h' });
-
+				}, jwt_secret, {expiresIn:"1h"});
 				return res.status(200).send({
-					message:'Login successfull',
+					message: "login success !",
+					expiresIn: 3600,
 					data:memberData,
 					token:token
 				});
 
 
-			}else{
+			}else{ 
 				return res.status(400).send({
-					message:'Incorrect credentials',
+					message:"Incorrect credentials",
 					data:{}
 				});
 			}
@@ -83,18 +81,18 @@ exports.login=async (req,res)=>{
 
 		}else{
 			return res.status(400).send({
-				message:'Member is not registered',
+				message:"Member is not registered",
 				data:{}
 			});
 		}
-	}catch(err){
+	}catch(err){ 
 		return res.status(400).send({
 			message:err.message,
 			data:err
 		});
 	}
 	
-
+   
 
 }
 
