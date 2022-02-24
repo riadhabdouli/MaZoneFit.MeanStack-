@@ -17,25 +17,19 @@ exports.change_password=async(req,res)=>{
 			old_password: 'required',
 			confirm_password: 'required|same:new_password'
 		});
-
 		const matched = await v.check();
-
 		if (!matched) {
 			return res.status(422).send(v.errors);
 		}
-
 		let current_user=req.user;
 		if(bcrypt.compareSync(req.body.old_password,current_user.password)){
-
 			let hashPassword=bcrypt.hashSync(req.body.new_password,10);
 			await Member.updateOne({
 				_id:current_user._id
 			},{
 				password:hashPassword
 			});
-
 			let memberData=await Member.findOne({_id:current_user._id})
-
 			let jwt_secret=process.env.JWT_SECRET||'mysecret';
 			let token=jwt.sign({
 			  data: memberData

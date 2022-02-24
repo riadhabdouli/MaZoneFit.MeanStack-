@@ -1,15 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthData } from "./auth-data.model";
+import { RegData } from "./reg-data.model";
 import { Subject } from "rxjs";
 import { Router } from "@angular/router";
-import { Message } from "@angular/compiler/src/i18n/i18n_ast";
 
 @Injectable({ providedIn: "root"})
 export class AuthService {
   private isAuthenticated = false;
   private token: any;
-  public msg: any;
   private tokenTimer : any;
   private userId : any;
   private authStatusListener = new Subject<boolean>();
@@ -21,7 +20,7 @@ export class AuthService {
   }
 
   getIsAuth(){
-    console.log("here");
+
     return this.isAuthenticated;
   }
 
@@ -33,10 +32,15 @@ export class AuthService {
   }
 
 
-    createUser(email : string, password: string ){
-      const authData: AuthData = {email: email, password : password};
-      this.http.post("http://localhost:3000/api/user/signup", authData).subscribe(()=>{
-        this.router.navigate(['/'])
+    createUser(first_name:string, last_name:string, email : string, password: string ){
+      const regData: RegData = {
+         first_name:first_name,
+         last_name:last_name, 
+         email: email, 
+         password : password};
+      this.http.post("http://localhost:3000/auth/register", regData).subscribe(()=>{
+        console.log("here !1"); 
+        this.router.navigate(['/login'])
       }, error => {
         this.authStatusListener.next(false);
       });
@@ -47,7 +51,6 @@ export class AuthService {
       this.http.post<{message:string, data:string, expiresIn: number,token:string}>("http://localhost:3000/auth/login", authData)
       .subscribe(response => {
        const token = response.token;
-       //const msg = response.message;
         this.token = token ;
         if(token){
           const expiresInDuration = response.expiresIn;
@@ -61,7 +64,8 @@ export class AuthService {
           this.saveAuthData(token,expirationDate, this.userId);  
           this.router.navigate(['/']);
         }
-      }, error => { console.log(error.error.message);
+      }, error => {
+        console.log(error.error.message);
       });
     }
 

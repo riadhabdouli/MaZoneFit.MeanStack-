@@ -4,29 +4,35 @@
     </span>
     <span class="spacer"></span>
     <ul>
-      <li>
+      <li *ngIf="userIsAuthenticated">
         <a mat-button [routerLink]="['/profile',username]" routerLinkActive="mat-accent">Profile</a>
       </li>
-      <li >
+      <li *ngIf="userIsAuthenticated">
         <button mat-button [matMenuTriggerFor]="menu">Plans</button>
-        <mat-menu #menu="matMenu">
+        <mat-menu #menu="matMenu" >
           <button mat-menu-item>Workout Plan</button>
           <button mat-menu-item>Nutrition Plan</button>
         </mat-menu>
       </li>
-      <li>
+      <li *ngIf="userIsAuthenticated">
         <a mat-button routerLink="/chat" routerLinkActive="mat-accent">Chat</a>
       </li>
-      <li>
+      <li *ngIf="userIsAuthenticated">
         <a mat-button routerLink="/Payment" routerLinkActive="mat-accent">Payment</a>
       </li>
-      <li>
+      <li *ngIf="!userIsAuthenticated">
+        <a mat-button routerLink="/register" routerLinkActive="mat-accent">Register</a>
+      </li>
+      <li *ngIf="!userIsAuthenticated">
+        <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+      </li>
+      <li *ngIf="userIsAuthenticated" >
            <mat-icon matBadge="15" matBadgeColor="warn"><span class="material-icons">
             notifications
           </span></mat-icon>
       </li>
-      <li >
-        <button mat-button >Logout</button>
+      <li *ngIf="userIsAuthenticated">
+        <button mat-button (click)="onLogout()" >Logout</button>
       </li>
     </ul>
 </mat-toolbar>
