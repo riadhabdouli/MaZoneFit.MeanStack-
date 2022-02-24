@@ -1,7 +1,7 @@
 import { Component, OnInit , Inject } from '@angular/core';
 import { Subscription } from "rxjs";
 import { NgForm } from "@angular/forms";
-import { Validators, AbstractControl, FormBuilder, FormGroup, FormControl , Validator , FormsModule} from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../auth.service';
