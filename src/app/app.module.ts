@@ -25,6 +25,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { RegisterComponent } from './auth/register/register.component';
+import { ErrorInterceptor } from './error-interceptor';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { RegisterComponent } from './auth/register/register.component';
     ProfileComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent 
+    RegisterComponent,
+    ErrorComponent 
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,10 @@ import { RegisterComponent } from './auth/register/register.component';
     ReactiveFormsModule,
     MatSidenavModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

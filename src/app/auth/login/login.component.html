@@ -8,8 +8,8 @@
           <form   class="form-signin"  (submit)="onLogin(loginForm)" #loginForm="ngForm">
                 <div class="form-group">
                    <label for="inputEmail" >Email address *</label>
-                   <input type="email"   name="email"  matInput  class="form-control rounded" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" ngModel >
-                </div>
+                   <input  #emailInput="ngModel" type="email"   name="email"  matInput  class="form-control rounded" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" ngModel >
+                  </div>
 <br>
             <div class="form-group">
                 <label for="inputPassword" >Password *</label>
