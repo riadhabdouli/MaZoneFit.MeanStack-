@@ -4,10 +4,12 @@ ul {
    margin: 0;
 }
 
-
+.mat-toolbar{
+  background: rgb(236, 234, 234);
+}
 button , a {
   text-decoration: none;
-  color : rgb(218, 93, 93);
+  color : rgb(0, 0, 0);
 }
 ul {
   display: flex;
