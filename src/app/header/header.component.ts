@@ -9,11 +9,11 @@ import { AuthService } from "../auth/auth.service" ;
 })
 
 export class HeaderComponent implements OnInit {
-  username = "Hamdi50";
   userIsAuthenticated = false;
   private authListenerSubs: Subscription = new Subscription;
   
   constructor(private authService: AuthService) { }
+  public email = "yesser@gmail.com";
 
   ngOnInit() {
     this.userIsAuthenticated = this.authService.getIsAuth();
@@ -21,9 +21,10 @@ export class HeaderComponent implements OnInit {
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
-      }); }
-
-
+      });
+     } 
+  
+   
   onLogout() {
     this.authService.logout();
   }

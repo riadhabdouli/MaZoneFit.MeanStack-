@@ -10,7 +10,8 @@ export class AuthService {
   private isAuthenticated = false;
   private token: any;
   private tokenTimer : any;
-  private userId : any;
+  public userEmail : any;
+  public userId : any;
   private authStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router){}
@@ -20,13 +21,11 @@ export class AuthService {
   }
 
   getIsAuth(){
-
+    
     return this.isAuthenticated;
   }
 
-  getUserId(){
-    return this.userId;
-  }
+
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
@@ -39,16 +38,28 @@ export class AuthService {
          email: email, 
          password : password};
       this.http.post("http://localhost:3000/auth/register", regData).subscribe(()=>{
-        console.log("here !1"); 
         this.router.navigate(['/login'])
       }, error => {
         this.authStatusListener.next(false);
       });
     }
 
+  getMember(userEmail: string){
+    return this.http.get<{
+      _id: string;
+      first_name: string;
+      last_name: string;
+      email: string;
+      password: string;
+      height: string;
+      weight: string; 
+    }>("http://localhost:3000/auth/profile/"+userEmail);
+  };
+
     login(email: string ,password: string ) {
+      this.userEmail = email;
       const authData: AuthData = {email: email, password : password};
-      this.http.post<{message:string, data:string, expiresIn: number,token:string}>("http://localhost:3000/auth/login", authData)
+      this.http.post<{message:string, data:string, expiresIn: number,token:string}>("http://localhost:3000/auth/login",authData)
       .subscribe(response => {
        const token = response.token;
         this.token = token ;
@@ -69,6 +80,10 @@ export class AuthService {
       });
     }
 
+  getUserId() {
+    console.log(this.userEmail);
+    return this.userEmail;
+  }
 
     autoAuthUser(){
     const authInformation :any = this.getAuthData();
@@ -125,4 +140,5 @@ export class AuthService {
           userId: userId
         }
     }
+   
 }

@@ -1,8 +1,12 @@
 const { Validator } = require('node-input-validator');
 
-const member=require('./../models/member.model');
+const member = require('./../models/member.model');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
+
+
+const express = require("express");
+const router = express.Router();
 
 exports.register=async (req,res)=>{
 	const v = new Validator(req.body, {
@@ -89,6 +93,7 @@ exports.login=async (req,res)=>{
   }
 }	
 
+
 exports.check_auth = (req, res, next) => {
      try {
        const token = req.headers.authorization.split(" ")[1];
@@ -103,19 +108,31 @@ exports.check_auth = (req, res, next) => {
      }
    };
 
+   exports.getMember=(req,res)=>{
+        member.find({ email: req.param('email') }).then((memberData) => {
+          if (memberData) {
+            res.status(200).json(memberData[0].toObject());
+          } else {
+            res.status(404).json({ message: "Member not found !" });
+          }
+        });
+   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   exports.updateMember= (req, res) => {
+        const memberData = new member({
+             _id: req.body.id,
+             first_name: req.body.first_name,
+             last_name: req.body.last_name,
+             email: req.body.email,
+             password: req.body.password,
+             weight: req.body.weight,
+              height:  req.body.height
+        });
+        member.updateOne({_id:req.params.id},memberData).then(result => {
+       if(result.modifiedCount > 0){
+         res.status(200).json({ message : "Update successful !"});
+         }else {
+          res.status(401).json({ message : "not authorized"});
+        }
+      });
+  }

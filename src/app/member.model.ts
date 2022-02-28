@@ -1,9 +1,9 @@
-export interface member{
+export interface memberData{
   id:string ;
-  username: string;
-  password:string;
+  first_name: string;
+  last_name: string;
   email: string;
-  fullname: string;
+  password:string;
   height: string;
   weight: string;
 };
