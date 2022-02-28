@@ -10,6 +10,4 @@ module.exports=(app)=>{
 
 	app.use('/auth',authRoute);
 	app.use('/profile',profileRoute);
-
-
 }

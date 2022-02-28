@@ -1,22 +1,29 @@
-<mat-card>
-  <form [formGroup]="form" id="profile">
-    
+<body>
+<div class="profile-div">
+<mat-card class="profile-img">
+<mat-card-title>Profile Picture</mat-card-title>
+<br>
+</mat-card>
+  <mat-card class="profile-details">
+    <mat-card-title>Profile Details</mat-card-title>
+    <br>
+  <form [formGroup]="form" id="profile"  (submit)="onUpdate(form)" >
       <mat-form-field appearance="fill">
-        <mat-label> Username </mat-label>
-        <input matInput type="text" formControlName="username" placeholder="username">
+        <mat-label> First name </mat-label>
+        <input matInput type="text" formControlName="first_name" placeholder="First name">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label> Last name </mat-label>
+        <input matInput type="text" formControlName="last_name" placeholder="Last name">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label> Email </mat-label>
+        <input matInput type="text" formControlName="email" placeholder="email">
       </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label> Password </mat-label>
-      <input matInput type="text" formControlName="password" placeholder="password">
+      <input matInput type="password" formControlName="password" placeholder="password">
      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label> Email </mat-label>
-        <input matInput rows="4" formControlName="email" placeholder="email">
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label> FullName </mat-label>
-      <input matInput type="text" formControlName="fullname" placeholder="fullname">
-      </mat-form-field> 
       <mat-form-field appearance="fill">
         <mat-label> Height </mat-label>
         <input matInput type="text" formControlName="height" placeholder="height">
@@ -28,3 +35,5 @@
     <button mat-raised-button color="primary" type="submit">Save</button>
   </form>
 </mat-card>
+</div>
+</body>

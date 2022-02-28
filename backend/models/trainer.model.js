@@ -1,15 +1,18 @@
 const mongoose=require('mongoose');
 const bcrypt=require('bcrypt');
-const schema = new mongoose.Schema({
- first_name: { type:String, default : '' },
- last_name: { type:String, default : '' },
- email: String,
- password: String,
- profile_image: { type:String, default : '' },
- profession: { type:String, default : '' }
-},{
-	timestamps:true
-});
+const schema = new mongoose.Schema(
+  {
+    first_name: { type: String, default: "" },
+    last_name: { type: String, default: "" },
+    email: String,
+    password: String,
+    profile_image: { type: String, default: "" },
+    profession: { type: String, default: "" },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 schema.pre('save', function(next) {
     var trainer = this;
