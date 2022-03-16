@@ -4,10 +4,32 @@
 <mat-card-title>Profile Picture</mat-card-title>
 <br>
 </mat-card>
+
+<mat-card class="profile-pass">
+  <mat-card-title>Change Password</mat-card-title>
+  <br>
+  <form [formGroup]="form2" id="pass"  (submit)="onChangePass(form2)">
+    <mat-form-field appearance="fill" class="input-Pass">
+      <mat-label> Old Password </mat-label>
+      <input matInput type="password" formControlName="old_pass" placeholder="Old Password" >
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="input-Pass">
+      <mat-label> New Password </mat-label>
+      <input matInput type="password"  formControlName="new_pass" placeholder="New Password">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="input-Pass">
+      <mat-label> Repeat New Password </mat-label>
+      <input matInput type="password" formControlName="renew_pass" placeholder="Repeat New Password">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit" class="button-pass">Save</button>
+  </form>
+</mat-card>
+
   <mat-card class="profile-details">
     <mat-card-title>Profile Details</mat-card-title>
     <br>
-  <form [formGroup]="form" id="profile"  (submit)="onUpdate(form)" >
+  <form [formGroup]="form1" id="profile"  (submit)="onUpdate(form1)" >
       <mat-form-field appearance="fill">
         <mat-label> First name </mat-label>
         <input matInput type="text" formControlName="first_name" placeholder="First name">
@@ -20,10 +42,6 @@
         <mat-label> Email </mat-label>
         <input matInput type="text" formControlName="email" placeholder="email">
       </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label> Password </mat-label>
-      <input matInput type="password" formControlName="password" placeholder="password">
-     </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label> Height </mat-label>
         <input matInput type="text" formControlName="height" placeholder="height">

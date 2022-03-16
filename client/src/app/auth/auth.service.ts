@@ -21,7 +21,6 @@ export class AuthService {
   }
 
   getIsAuth(){
-    
     return this.isAuthenticated;
   }
 
@@ -44,7 +43,7 @@ export class AuthService {
       });
     }
 
-  getMember(userEmail: string){
+  getMember(userId: string){
     return this.http.get<{
       _id: string;
       first_name: string;
@@ -53,7 +52,7 @@ export class AuthService {
       password: string;
       height: string;
       weight: string; 
-    }>("http://localhost:3000/auth/profile/"+userEmail);
+    }>("http://localhost:3000/auth/profile/"+userId);
   };
 
     login(email: string ,password: string ) {
@@ -81,8 +80,7 @@ export class AuthService {
     }
 
   getUserId() {
-    console.log(this.userEmail);
-    return this.userEmail;
+    return this.userId._id;
   }
 
     autoAuthUser(){

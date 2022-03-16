@@ -32,16 +32,29 @@ input {
 
 .profile-details{
   width: 600px;
-  height: 660px;
+  height: 610px;
   margin-left: 120px;
 }
 .profile-img{
-  margin-left: 60px;
+  margin-left: 20px;
   width: 400px;
   height: 300px;
 }
 .profile-div{
   position: absolute;
   top: 50px;
+  margin-left: 250px;
   display: flex;
+}
+
+.profile-pass{
+  margin-top: 320px;
+  margin-left: 20px;
+  position: absolute;
+  width: 400px;
+  height: 400px;
+}
+
+.input-Pass{
+  width: 62%;
 }
