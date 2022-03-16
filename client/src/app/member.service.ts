@@ -5,12 +5,17 @@ import { memberData } from "./member.model";
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { AuthService } from "./auth/auth.service";
+import { HeadService } from "./header/head.service";
 
 @Injectable({ providedIn: 'root' })
 export class MemberService{
   private members: memberData[] = [];
-  constructor(private http: HttpClient, private router: Router) { }
-
+  
+  constructor(
+    private http: HttpClient, 
+    private router: Router ,
+    private headService : HeadService   ) { }
+  
  
   getMember(userId:string){
     return this.http.get<{
@@ -40,4 +45,17 @@ export class MemberService{
       this.router.navigate(["/"]);
     })
   };
+
+  changePass(id:string , old_pass: string , new_pass: string , renew_pass:string){
+    let passData : any;
+    passData= {
+      old_password:old_pass,
+      new_password:new_pass,
+      confirm_password: renew_pass
+    };
+    this.http.post("http://localhost:3000/auth/change-password/" + id, passData)
+      .subscribe(Response => {
+        this.router.navigate(["/"]);
+      })
+  }
 }

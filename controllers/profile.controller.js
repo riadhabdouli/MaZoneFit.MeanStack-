@@ -13,17 +13,20 @@ exports.current_user=(req,res)=>{
 exports.change_password=async(req,res)=>{
 	try{
 		const v = new Validator(req.body, {
-			old_password: 'required',
-			old_password: 'required',
-			confirm_password: 'required|same:new_password'
-		});
+      old_password: "required",
+      new_password: "required",
+      confirm_password: "required|same:new_password",
+    });
 		const matched = await v.check();
+	
 		if (!matched) {
 			return res.status(422).send(v.errors);
-		}
-		let current_user=req.user;
+		}	
+		//console.log(req.params.id);
+        let current_user = await Member.findOne({ _id: req.params.id }); 
+		//console.log(current_user);
 		if(bcrypt.compareSync(req.body.old_password,current_user.password)){
-			let hashPassword=bcrypt.hashSync(req.body.new_password,10);
+			let hashPassword=bcrypt.hashSync(req.body.new_password,10);	
 			await Member.updateOne({
 				_id:current_user._id
 			},{
@@ -47,8 +50,6 @@ exports.change_password=async(req,res)=>{
 				data:{}
 			});
 		}
-
-
 
 	}catch(err){
 		return res.status(400).send({

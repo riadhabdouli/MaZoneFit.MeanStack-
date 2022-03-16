@@ -4,7 +4,6 @@ const member = require('./../models/member.model');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 
-
 const express = require("express");
 const router = express.Router();
 
@@ -58,6 +57,8 @@ exports.login=async (req,res)=>{
   try {
     let memberData = await member.findOne({ email: req.body.email });
     if (memberData) {
+      //  let trainerData = await trainer.findOne({ email: req.body.email });
+      // if(trainerData) {}
       if (bcrypt.compareSync(req.body.password, memberData.password)) {
         let jwt_secret = process.env.JWT_SECRET || "mysecret";
         let token = jwt.sign(
@@ -109,7 +110,7 @@ exports.check_auth = (req, res, next) => {
    };
 
    exports.getMember=(req,res)=>{
-        member.find({ email: req.param('email') }).then((memberData) => {
+        member.find({ _id: req.param('id') }).then((memberData) => {
           if (memberData) {
             res.status(200).json(memberData[0].toObject());
           } else {
