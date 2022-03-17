@@ -1,4 +1,4 @@
-const authRoute=require('./trainer');
+const authRoute=require('./member');
 const profileRoute=require('./profile');
 
 module.exports=(app)=>{
