@@ -1,5 +1,5 @@
 const { Validator } = require('node-input-validator');
-const member = require('../models/member.model');
+const trainer = require('../models/trainer.model');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const express = require("express");
@@ -21,17 +21,17 @@ exports.register=async (req,res)=>{
 	}
 
 	try {
-		const newMember = new member({
+		const newTrainer = trainer({
 		 first_name:req.body.first_name,
 		 last_name:req.body.last_name,
 		 email:req.body.email,
 		 password:req.body.password 
 		});
 
-		let memberData=await newMember.save();
+		let trainerData=await newTrainer.save();
 		return res.status(200).send({
 			message:'Registration successfull',
-			data:memberData
+			data:trainerData
 		});
 
 	}catch(err){
@@ -55,15 +55,15 @@ exports.login=async (req,res)=>{
   }
 
   try {
-    let memberData = await member.findOne({ email: req.body.email });
-    if (memberData) {
+    let trainerData = await trainer.findOne({ email: req.body.email });
+    if (trainerData) {
       //  let trainerData = await trainer.findOne({ email: req.body.email });
       // if(trainerData) {}
-      if (bcrypt.compareSync(req.body.password, memberData.password)) {
+      if (bcrypt.compareSync(req.body.password, trainerData.password)) {
         let jwt_secret = process.env.JWT_SECRET || "mysecret";
         let token = jwt.sign(
           {
-            data: memberData,
+            data: trainerData,
           },
           jwt_secret,
           { expiresIn: "1h" }
@@ -71,7 +71,7 @@ exports.login=async (req,res)=>{
         return res.status(200).send({
           message: "login success !",
           expiresIn: 3600,
-          data: memberData,
+          data: trainerData,
           token: token,
         });
       } else {
@@ -106,7 +106,7 @@ exports.check_auth = (req, res, next) => {
        res.status(401).json({ message: "Auth failed !" });
      }
 };
-exports.getMember=(req,res)=>{
+exports.getTrainer=(req,res)=>{
         member.find({ _id: req.param('id') }).then((memberData) => {
           if (memberData) {
             res.status(200).json(memberData[0].toObject());
@@ -115,8 +115,8 @@ exports.getMember=(req,res)=>{
           }
         });
 };
-exports.updateMember= (req, res) => {
-        const memberData = new member({
+exports.updateTrainer= (req, res) => {
+        const trainerData = new member({
              _id: req.body.id,
              first_name: req.body.first_name,
              last_name: req.body.last_name,
@@ -125,7 +125,7 @@ exports.updateMember= (req, res) => {
              weight: req.body.weight,
               height:  req.body.height
         });
-        member.updateOne({_id:req.params.id},memberData).then(result => {
+        member.updateOne({_id:req.params.id},trainerData).then(result => {
        if(result.modifiedCount > 0){
          res.status(200).json({ message : "Update successful !"});
          }else {
@@ -161,15 +161,15 @@ exports.change_password=async(req,res)=>{
 			},{
 				password:hashPassword
 			});
-			let memberData=await Member.findOne({_id:current_user._id})
+			let trainerData=await Trainer.findOne({_id:current_user._id})
 			let jwt_secret=process.env.JWT_SECRET||'mysecret';
 			let token=jwt.sign({
-			  data: memberData
+			  data: trainerData
 			}, jwt_secret, { expiresIn: '12h' });
 
 			return res.status(200).send({
 				message:'Password successfully updated',
-				data:memberData,
+				data:trainerData,
 				token:token
 			});
 
@@ -227,7 +227,7 @@ exports.update_profile=async (req,res)=>{
 			var image_file_name=current_user.profile_image;
 		}
 
-		await Member.updateOne({
+		await Trainer.updateOne({
 			_id:current_user._id
 		},{
 			first_name:req.body.first_name,
@@ -236,15 +236,15 @@ exports.update_profile=async (req,res)=>{
 			profession:req.body.profession?req.body.profession:''
 		});
 
-			let memberData=await Member.findOne({_id:current_user._id})
+			let trainerData=await Member.findOne({_id:current_user._id})
 			let jwt_secret=process.env.JWT_SECRET||'mysecret';
 			let token=jwt.sign({
-			  data: memberData
+			  data: trainerData
 			}, jwt_secret, { expiresIn: '12h' });
 
 			return res.status(200).send({
 				message:'Profile successfully updated',
-				data:memberData,
+				data:trainerData,
 				token:token
 			});
 
