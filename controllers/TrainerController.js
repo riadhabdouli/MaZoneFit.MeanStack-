@@ -73,6 +73,7 @@ exports.login=async (req,res)=>{
           expiresIn: 3600,
           data: trainerData,
           token: token,
+          
         });
       } else {
         return res.status(400).send({
