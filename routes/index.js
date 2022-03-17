@@ -1,5 +1,5 @@
-const authRoute=require('./member');
-const profileRoute=require('./profile');
+const MemberRouter=require('./member');
+
 
 module.exports=(app)=>{
 	app.get('/',function(req,res){
@@ -8,6 +8,6 @@ module.exports=(app)=>{
 		});
 	});
 
-	app.use('/auth',authRoute);
-	app.use('/profile',profileRoute);
+	app.use('/auth',MemberRouter);
+	app.use('/profile',MemberRouter);
 }
