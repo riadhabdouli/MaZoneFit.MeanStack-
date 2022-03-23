@@ -1,5 +1,6 @@
-const authRoute=require('./member');
-const profileRoute=require('./profile');
+const MemberRouter=require('./member');
+const TrainerRouter=require('./trainer');
+
 
 module.exports=(app)=>{
 	app.get('/',function(req,res){
@@ -8,6 +9,9 @@ module.exports=(app)=>{
 		});
 	});
 
-	app.use('/auth',authRoute);
-	app.use('/profile',profileRoute);
+	app.use('/auth',MemberRouter);
+	app.use('/profile',MemberRouter);
+
+	app.use('/auth/trainer',TrainerRouter);
+	app.use('/profile/trainer',TrainerRouter);
 }
