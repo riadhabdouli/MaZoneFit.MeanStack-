@@ -6,6 +6,7 @@ export interface memberData{
   password:string;
   height: string;
   weight: string;
+  profile_image: string;
 };
 
 

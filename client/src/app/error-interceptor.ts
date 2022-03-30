@@ -13,7 +13,7 @@ constructor(private dialog: MatDialog) {}
     intercept(req: HttpRequest<any>, next: HttpHandler) {
       return next.handle(req).pipe(
         catchError((error:HttpErrorResponse) => {
-          let errorMessage = "An unknown eeror occurred !";
+          let errorMessage = "An unknown error occurred !";
           if(error.error.message){
              errorMessage= error.error.message;
           }
