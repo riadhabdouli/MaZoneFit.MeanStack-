@@ -3,17 +3,26 @@ const app=express();
 const bodyParser = require('body-parser');
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false,limit :'50mb' }));
+app.use(bodyParser.urlencoded({ extended: true,limit :'100mb' }));
 // parse application/json
 app.use(bodyParser.json());
 
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); 
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 require('dotenv').config();
 const cors = require('cors');
 app.use(cors());
-global.publicPath=__dirname+'/public';
+global.publicPath=__dirname+'/controllers/images';
 
 app.use(function(req, res, next){
 	global.req=req;

@@ -11,7 +11,7 @@ public email : any;
 	constructor(private http: HttpClient, private router: Router) { }
   
 	updatePro(email : string) {
-	//	console.log(email)
+	//console.log(email)
 		this.router.navigate(['profile', email]);
 	}
 }

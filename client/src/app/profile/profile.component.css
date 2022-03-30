@@ -58,3 +58,26 @@ input {
 .input-Pass{
   width: 62%;
 }
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+.image-preview {
+  height: 10rem;
+  margin: 1rem 0;
+  margin-left: 100px;
+}
+
+.image-preview img {
+  height: 100%;
+}
+
+.savePic {
+  margin-left: 300px;
+}
+
+.button-pic{
+  top: 180px;
+}
+

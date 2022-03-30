@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { AuthService } from "../auth/auth.service" ;
 import { HeadService } from "./head.service";
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   userIsAuthenticated = false;
   private authListenerSubs: Subscription = new Subscription;
   
-  constructor(private authService: AuthService, private headService : HeadService) { }
+  constructor(private authService: AuthService, private headService : HeadService) {  }
   public email : string = "";
 
   ngOnInit() {

@@ -52,6 +52,7 @@ export class AuthService {
       password: string;
       height: string;
       weight: string; 
+      profile_image:string;
     }>("http://localhost:3000/auth/profile/"+userId);
   };
 
