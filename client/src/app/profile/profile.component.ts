@@ -47,8 +47,8 @@ export class ProfileComponent implements OnInit {
       })
     });
 
- this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      var al :string ="";
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      var al: string = "";
       if (paramMap.has("id")) {
         this.memberId = paramMap.get('id');
         this.memberService.getMember(this.memberId).subscribe(memberData => {
@@ -65,20 +65,20 @@ export class ProfileComponent implements OnInit {
           if (memberData.profile_image != "") {
             //console.log(memberData.profile_image);
             // var image = new image();
-           this.memberService.getImage(memberData.profile_image).subscribe(data => {
-             al = data.toString();
-             const imageName = 'name.png';
-             const imageBlob = this.dataURItoBlob(al);
-             const imageFile = new File([imageBlob], imageName, { type: 'image/png' });
-             //console.log(typeof (imageFile));
-             this.form3.patchValue({ image: imageFile });
-             this.form3.get('image').updateValueAndValidity();
-             const reader = new FileReader();
-             reader.onload = () => {
-               this.imagePreview = reader.result;
-             };
-             reader.readAsDataURL(imageFile);
-            }); 
+            this.memberService.getImage(memberData.profile_image).subscribe(data => {
+              al = data.toString();
+              const imageName = 'name.png';
+              const imageBlob = this.dataURItoBlob(al);
+              const imageFile = new File([imageBlob], imageName, { type: 'image/png' });
+              //console.log(typeof (imageFile));
+              this.form3.patchValue({ image: imageFile });
+              this.form3.get('image').updateValueAndValidity();
+              const reader = new FileReader();
+              reader.onload = () => {
+                this.imagePreview = reader.result;
+              };
+              reader.readAsDataURL(imageFile);
+            });
           }
           this.form1.setValue({
             first_name: this.member.first_name,
@@ -139,7 +139,7 @@ export class ProfileComponent implements OnInit {
     let file: Blob = new Blob();
     if (htmlFiles != null) {
       file = htmlFiles[0];
-      console.log(typeof(file));
+      console.log(typeof (file));
       //this.memberService.convertToBase64(htmlFiles[0]);
     }
     this.form3.patchValue({ image: file });

@@ -18,7 +18,7 @@ body {
     /*vertical-align:middle;*/
   background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
   background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);  
-  height: 100%;
+  height: 130%;
    position: absolute;
 }
 form {
@@ -64,8 +64,8 @@ input[type="file"] {
 }
 
 .image-preview {
-  height: 10rem;
-  margin: 1rem 0;
+  height: 11rem;
+ /* margin: 1rem 0;*/
   margin-left: 100px;
 }
 
@@ -73,11 +73,24 @@ input[type="file"] {
   height: 100%;
 }
 
-.savePic {
-  margin-left: 300px;
+
+.flex-parent {
+  margin-top: 10px;
+  display: flex;
+  padding-right: 200px;
 }
 
-.button-pic{
-  top: 180px;
+/*.jc-center {
+  justify-content: center;
+}*/
+
+
+.button-pic {
+  width: 300px;
+  height: 35px;
 }
 
+/*
+.button-save.margin-right {
+  margin-right: 20px;
+}*/

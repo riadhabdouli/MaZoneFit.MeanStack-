@@ -6,11 +6,11 @@
         <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form3.get('image').valid">
           <img [src]="imagePreview" [alt]="form3.value.title">
         </div>
-        <div class="picBtns">
+        <div class="flex-parent jc-center">
           <button mat-raised-button color="primary" type="button" class="button-pic" (click)="filePicker.click()">Upload
             New Photo</button>
           <input type="file" #filePicker (change)="onImagePicked($event)">
-          <button mat-raised-button color="primary" type="submit" class="savePic"
+          <button mat-raised-button color="primary" type="submit" class="button-save"
             *ngIf="imagePreview !== '' && imagePreview && form3.get('image').valid">Save</button>
         </div>
         <br>
