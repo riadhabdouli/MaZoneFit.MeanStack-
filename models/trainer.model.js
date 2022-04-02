@@ -7,7 +7,10 @@ const schema = new mongoose.Schema(
     email: String,
     password: String,
     profile_image: { type: String, default: "" },
-    profession: { type: String, default: "" },
+    profession: { type: String, default: "trainer" },
+    members: [{
+      type: String
+    }]
   },
   {
     timestamps: true,

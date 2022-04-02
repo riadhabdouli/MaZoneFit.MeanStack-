@@ -1,5 +1,6 @@
 const { Validator } = require("node-input-validator");
 const member = require("../models/member.model");
+const trainer = require("../models/trainer.model")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const express = require("express");
@@ -255,4 +256,22 @@ exports.getImage = (req, res) => {
       //res.end(content);
     }
   });
+};
+
+
+exports.addMember = (req, res) => {
+  console.log("test");
+  let Tid = req.params.id;
+  let Mid = req.body.memberId;
+  console.log(req.params.id);
+  console.log(req.body.memberId);
+  trainer
+    .updateOne({ _id: Tid }, { $push: { members: Mid } })
+    .then((result) => {
+      if (result.modifiedCount > 0) {
+        res.status(200).json({ message: "Update successful !" });
+      } else {
+        res.status(401).json({ message: "not authorized" });
+      }
+    });
 };

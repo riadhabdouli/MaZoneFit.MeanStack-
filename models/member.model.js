@@ -9,7 +9,7 @@ const schema = new mongoose.Schema(
     height: { type: String, default: "" },
     weight: { type: String, default: "" },
     profile_image: { type: String, default: "" },
-    profession: { type: String, default: "" },
+    profession: { type: String, default: "member" },
   },
   {
     timestamps: true,
