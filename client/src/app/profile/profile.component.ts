@@ -11,6 +11,8 @@ import { mimeType } from "./mime-type.validator";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
+
 export class ProfileComponent implements OnInit {
   member: any;
   memberData: memberData[] = [];
@@ -60,7 +62,8 @@ export class ProfileComponent implements OnInit {
             email: memberData.email,
             height: memberData.height,
             weight: memberData.weight,
-            profile_image: memberData.profile_image
+            profile_image: memberData.profile_image,
+            profession: memberData.profession
           };
           if (memberData.profile_image != "") {
             //console.log(memberData.profile_image);

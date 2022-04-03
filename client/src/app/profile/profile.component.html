@@ -54,11 +54,11 @@
           <mat-label> Email </mat-label>
           <input matInput type="text" formControlName="email" placeholder="email">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="member.profession=='member'">
           <mat-label> Height </mat-label>
           <input matInput type="text" formControlName="height" placeholder="height">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="member.profession=='member'"> 
           <mat-label> weight </mat-label>
           <input matInput type="text" formControlName="weight" placeholder="weight">
         </mat-form-field>

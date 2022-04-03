@@ -28,9 +28,20 @@ export class MemberService {
       height: string;
       weight: string;
       profile_image: string;
+      profession: string;
     }>("http://localhost:3000/auth/profile/" + userId);
   };
-
+  getTrainer(userId: string){
+    return this.http.get<{
+      _id: string;
+      first_name: string;
+      last_name: string;
+      email: string;
+      password: string;
+      profile_image: string;
+      profession: string;
+    }>("http://localhost:3000/auth/profile/" + userId);
+  }
   updateMember(id: string, first_name: string, last_name: string, email: string, password: string, height: string, weight: string, profile_image:string) {
     let memberData: memberData;
     memberData = {
