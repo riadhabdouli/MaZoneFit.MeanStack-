@@ -232,3 +232,14 @@ exports.getImage = (req, res) => {
   });
 };
 
+exports.addMember= (req,res) => {
+  let Tid = req.params.id;
+  let Mid = req.body.memberId;
+  trainer.updateOne({ _id: Tid }, { $push: {members: Mid} }).then((result) => {
+    if (result.modifiedCount > 0) {
+      res.status(200).json({ message: "Update successful !" });
+    } else {
+      res.status(401).json({ message: "not authorized" });
+    }
+  });
+}
