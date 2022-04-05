@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { AuthService } from "../auth/auth.service" ;
 import { HeadService } from "./head.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   userIsAuthenticated = false;
   private authListenerSubs: Subscription = new Subscription;
   
-  constructor(private authService: AuthService, private headService : HeadService) {  }
+  constructor(private authService: AuthService, private headService : HeadService ,private router: Router) {  }
   public email : string = "";
 
   ngOnInit() {
@@ -27,8 +28,15 @@ export class HeaderComponent implements OnInit {
   
      onClickProfile(){
        this.email = this.authService.getUserId();
-       this.headService.updatePro(this.email);
-      // console.log(this.email);
+       this.router.navigate(['profile', this.email]);
+     }
+     onClickWorkoutPlan(){
+      this.email = this.authService.getUserId();
+      this.router.navigate(['workout', this.email]);
+     }
+     onClicknutriPlan(){
+      this.email = this.authService.getUserId();
+      this.router.navigate(['nutrition', this.email]);
      }
 
    /*onUpdate(email : string){  // this methode is for making the fetching available after profile updating

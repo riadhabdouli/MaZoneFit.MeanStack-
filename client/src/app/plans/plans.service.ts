@@ -24,4 +24,32 @@ export class plansService {
         this.router.navigate(["/"]);
       });
   }
+
+  getNPlan(id : string){
+    return this.http.get<{
+      id: string;
+      memberId: Array<string>;
+      Monday: Array<string>;
+      Tuesday: Array<string>;
+      Wednesday: Array<string>;
+      Thursday: Array<string>;
+      Friday: Array<string>;
+      Saturday: Array<string>;
+      Sunday: Array<string>;
+    }>("http://localhost:3000/plan/nutrition/"+id);
+  }
+
+  getWPlan(id : string){
+    return this.http.get<{
+      id: string;
+      memberId: Array<string>;
+      Monday: Array<string>;
+      Tuesday: Array<string>;
+      Wednesday: Array<string>;
+      Thursday: Array<string>;
+      Friday: Array<string>;
+      Saturday: Array<string>;
+      Sunday: Array<string>;
+    }>("http://localhost:3000/plan/workout/"+id);
+  }
 }

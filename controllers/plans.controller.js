@@ -7,7 +7,7 @@ const express = require("express");
 const router = express.Router();
 
 
-exports.createNPlan= async (req, res) => {
+exports.editNPlan= async (req, res) => {
       const newNplan = new nPlan({
         memberId: req.body.a,
         Monday: ["Breakfast","Lunch","Dinner"],
@@ -25,3 +25,13 @@ exports.createNPlan= async (req, res) => {
        data: NplanData
      });
 }
+
+exports.getNPlan = (req,res)=> {
+    nPlan.find({ memberId: req.param("id")}).then((nData) => {
+      if (nData) {
+        res.status(200).json(nData[0].toObject());
+      } else {
+        res.status(404).json({ message: "Plan not found !" });
+      }
+    });
+  }

@@ -10,21 +10,21 @@
         <th scope="col">last_name</th>
 
         <th scope="col">Email</th>
-        <th scope="col">Password</th>
-        <th scope="col">Phone No</th>
-        <th scope="col center">Update</th>
+        <!-- <th scope="col">Password</th> -->
+        <th scope="col">Contact</th>
+        <!-- <th scope="col center">Update</th> -->
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let Trainers of trainers; let i = index">
         <th scope="row">{{Trainers._id}}</th>
-        <td>{{Trainers.first_name}}</td>
+        <td>{{Trainers.first_name}}</td> 
         <td>{{Trainers.last_name}}</td>
         <td>{{Trainers.email}}</td>
-        <td>{{Trainers.password}}</td>
+        <!-- <td>{{Trainers.password}}</td> -->
         <td class="text-center edit-block">
-            <button type="button" class="btn btn-success btn-sm" (click)="send('{{Trainers._id}}')">Edit</button>
-            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            <button type="button" class="btn btn-success btn-sm" (click)="send('{{Trainers._id}}')">Hire Trainer</button>
+            <button type="button" class="btn btn-danger btn-sm">View Profile</button>
         </td>
       </tr>
     </tbody>
