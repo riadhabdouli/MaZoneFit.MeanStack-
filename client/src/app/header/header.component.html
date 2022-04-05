@@ -10,8 +10,8 @@
     <li *ngIf="userIsAuthenticated">
       <button mat-button [matMenuTriggerFor]="menu">Plans</button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Workout Plan</button>
-        <button mat-menu-item>Nutrition Plan</button>
+        <button routerLink="/workout" mat-menu-item>Workout Plan</button>
+        <button routerLink="/nutrition" mat-menu-item>Nutrition Plan</button>
       </mat-menu>
     </li>
     <li *ngIf="userIsAuthenticated">
