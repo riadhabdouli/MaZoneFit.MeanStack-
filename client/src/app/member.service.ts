@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, Subject, Subscriber, Subscription } from 'rxjs'
 import { memberData } from "./member.model";
+import {TrainerData} from "./trainer.model"
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { AuthService } from "./auth/auth.service";
@@ -9,8 +10,10 @@ import { HeadService } from "./header/head.service";
 
 @Injectable({ providedIn: 'root' })
 export class MemberService {
+  private trainers: TrainerData[] = [];
   private members: memberData[] = [];
   member: any;
+  trainer: any;
   imageD: string = "";
   constructor(
     private http: HttpClient,
@@ -107,5 +110,21 @@ export class MemberService {
   getImage(img:string){
     console.log("img service")
     return this.http.get<{ content: string }>("http://localhost:3000/auth/profileimg/" + img);
+  }
+
+  
+
+  
+  getAllTrainers(){
+    return this.http.get<{
+      _id: string;
+      first_name: string;
+      last_name: string;
+      email: string;
+      password: string;
+      profile_image: string;
+      
+    }>("http://localhost:3000/user/user-list");
+
   }
 }
