@@ -7,12 +7,8 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const mime = require("mime");
-const nPlan = require("../models/nutrition.model");
-const wPlan = require("../models/workout.model");
-
 
 exports.register = async (req, res) => {
-
   const v = new Validator(req.body, {
     first_name: "required|minLength:2|maxLength:100",
     last_name: "required|minLength:2|maxLength:100",
@@ -23,6 +19,7 @@ exports.register = async (req, res) => {
   if (!matched) {
     return res.status(422).send(v.errors);
   }
+
   try {
     const newMember = new member({
       first_name: req.body.first_name,
@@ -30,15 +27,12 @@ exports.register = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
-    
+
     let memberData = await newMember.save();
-    if(memberData){
-      await createEmptyPlans(memberData._id);
     return res.status(200).send({
       message: "Registration successfull",
-      data: memberData
+      data: memberData,
     });
-  }
   } catch (err) {
     return res.status(400).send({
       message: err.message,
@@ -46,9 +40,7 @@ exports.register = async (req, res) => {
     });
   }
 };
-
 exports.login = async (req, res) => {
-
   const v = new Validator(req.body, {
     email: "required|email",
     password: "required",
@@ -113,7 +105,7 @@ exports.check_auth = (req, res, next) => {
 };
 
 exports.getMember = (req, res) => {
-  member.find({ _id: req.param("id")}).then((memberData) => {
+  member.find({ _id: req.param("id") }).then((memberData) => {
     if (memberData) {
       res.status(200).json(memberData[0].toObject());
     } else {
@@ -268,6 +260,7 @@ exports.getImage = (req, res) => {
 
 
 exports.addMember = (req, res) => {
+  console.log("test");
   let Tid = req.params.id;
   let Mid = req.body.memberId;
   console.log(req.params.id);
@@ -282,32 +275,3 @@ exports.addMember = (req, res) => {
       }
     });
 };
-
-
-async function createEmptyPlans(idMember){
-   let a = String(idMember);
-   const newNplan = new nPlan({
-    memberId: a,
-    Monday: ["Breakfast","Lunch","Dinner"],
-    Tuesday: ["Breakfast","Lunch","Dinner"],
-    Wednesday:["Breakfast","Lunch","Dinner"],
-    Thursday:["Breakfast","Lunch","Dinner"],
-    Friday: ["Breakfast","Lunch","Dinner"],
-    Saturday: ["Breakfast","Lunch","Dinner"],
-    Sunday: ["Breakfast","Lunch","Dinner"]
-  });
- let NplanData = await newNplan.save();
-
- const newWplan = new wPlan({
-  memberId: a,
-  Monday: "Empty day",
-  Tuesday: "Empty day",
-  Wednesday:"Empty day",
-  Thursday:"Empty day",
-  Friday: "Empty day",
-  Saturday: "Empty day",
-  Sunday: "Empty day"
-});
-let WplanData = await newWplan.save();
-};
-

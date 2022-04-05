@@ -1,6 +1,5 @@
 const MemberRouter=require('./member');
 const TrainerRouter=require('./trainer');
-const plansRouter = require('./plans')
 
 
 module.exports=(app)=>{
@@ -15,6 +14,4 @@ module.exports=(app)=>{
 
 	app.use('/auth/trainer',TrainerRouter);
 	app.use('/profile/trainer',TrainerRouter);
-
-	app.use('/plan',plansRouter);
 }
