@@ -28,6 +28,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 import { TrainerViewComponent } from './trainer-view/trainer-view.component';
+import { nutrtionPlan } from './plans/nutrition/nutrition.component';
+import { workoutPlan } from './plans/workout/workout.component';  
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { TrainerViewComponent } from './trainer-view/trainer-view.component';
     LoginComponent,
     RegisterComponent,
     ErrorComponent,
-    TrainerViewComponent 
+    TrainerViewComponent,
+    nutrtionPlan,
+    workoutPlan
   ],
   imports: [
     BrowserModule,

@@ -21,4 +21,5 @@ export class nutrtionPlan implements OnInit {
 
 		ngOnInit(): void {
 		}
+
 }
