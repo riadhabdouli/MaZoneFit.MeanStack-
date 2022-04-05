@@ -9,9 +9,13 @@ import { ActivatedRoute, ParamMap } from "@angular/router";
 	styleUrls: ['./workout.component.css']
 })
 export class workoutPlan implements OnInit {
-
+	nutriForm : any;
 
 	ngOnInit(): void {
+
+	}
+
+	onSave(form : NgForm){
 
 	}
 }

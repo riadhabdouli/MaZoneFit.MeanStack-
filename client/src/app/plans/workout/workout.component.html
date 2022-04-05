@@ -1,3 +1,77 @@
 <body>
-    <h1>test workout</h1>
+    <mat-card class="profile-details">
+        <mat-card-title>Workout Plan</mat-card-title>
+        <br>
+      <form [formGroup]="nutriForm" id="profile" (submit)="onSave(nutriForm)">
+          <div class="Monday">
+        <h3>Monday</h3>  <h3>Tuesday</h3>   <h3>Wednesday</h3>  <h3>Thursday</h3>  <h3>Friday</h3>  
+        <h3>Saturday</h3>  <h3>Sunday</h3>
+        <br> 
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label> Session 1 </mat-label>
+          <input matInput type="text" formControlName="Session1" placeholder="Session 1">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label> Session 1 </mat-label>
+            <input matInput type="text" formControlName="Session1" placeholder="Session 1">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label> Session 1 </mat-label>
+            <input matInput type="text" formControlName="Session1" placeholder="Session 1">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label> Session 1 </mat-label>
+            <input matInput type="text" formControlName="Session1" placeholder="Session 1">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label> Session 1 </mat-label>
+            <input matInput type="text" formControlName="Session1" placeholder="Session 1">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label> Session 1 </mat-label>
+            <input matInput type="text" formControlName="Session1" placeholder="Session 1">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label> Session 1 </mat-label>
+            <input matInput type="text" formControlName="Session1" placeholder="Session 1">
+          </mat-form-field>
+        
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label> Session 2 </mat-label>
+          <input matInput type="text" formControlName="Session2" placeholder="Session 2">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label> Session 2 </mat-label>
+          <input matInput type="text" formControlName="Session2" placeholder="Session 2">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label> Session 2 </mat-label>
+          <input matInput type="text" formControlName="Session2" placeholder="Session 2">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label> Session 2 </mat-label>
+          <input matInput type="text" formControlName="Session2" placeholder="Session 2">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label> Session 2 </mat-label>
+          <input matInput type="text" formControlName="Session2" placeholder="Session 2">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label> Session 2 </mat-label>
+          <input matInput type="text" formControlName="Session2" placeholder="Session 2">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label> Session 2 </mat-label>
+          <input matInput type="text" formControlName="Session2" placeholder="Session 2">
+        </mat-form-field>
+    </div>
+<br>
+    <br>
+        <button mat-raised-button color="primary" type="submit">Save Plan</button>
+      </form>
+     </mat-card>
 </body>
+
+

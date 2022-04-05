@@ -1,6 +1,36 @@
 body{
-    background-image: url('background.jpg');
+    background-image: url('workout.jpg');
     width: 100%;
     height: 130%;
     position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+mat-card{
+    width: 1000px;
+ height: 500px;
+ margin-left: 250px;
+ margin-top: 50px;
+}
+
+mat-form-field{
+    width: 120px;
+    margin: 5px;
+}
+
+.Monday{
+    margin-left: 30px;
+}
+
+h3{
+   display: inline; 
+   margin: 32px;
+}
+button{
+    margin-left: 800px;
+    width: 100px;
+    height: 40px;
 }

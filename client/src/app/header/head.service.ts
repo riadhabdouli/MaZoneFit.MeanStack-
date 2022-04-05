@@ -12,6 +12,6 @@ public email : any;
   
 	updatePro(email : string) {
 	//console.log(email)
-		this.router.navigate(['profile', email]);
+	this.router.navigate(['profile', email]);
 	}
 }
