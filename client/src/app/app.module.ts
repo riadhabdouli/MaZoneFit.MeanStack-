@@ -27,6 +27,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { RegisterComponent } from './auth/register/register.component';
 import { ErrorInterceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
+import { TrainerViewComponent } from './trainer-view/trainer-view.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ErrorComponent } from './error/error.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ErrorComponent 
+    ErrorComponent,
+    TrainerViewComponent 
   ],
   imports: [
     BrowserModule,

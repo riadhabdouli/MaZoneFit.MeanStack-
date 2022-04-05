@@ -11,6 +11,8 @@ import { mimeType } from "./mime-type.validator";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
+
 export class ProfileComponent implements OnInit {
   member: any;
   memberData: memberData[] = [];
@@ -19,10 +21,7 @@ export class ProfileComponent implements OnInit {
   form3: any;
   private memberId: any;
   imagePreview: string | ArrayBuffer | null = '';
-
-  constructor(public route: ActivatedRoute,
-    public authService: AuthService,
-    public memberService: MemberService) { }
+  constructor(public route: ActivatedRoute,public authService: AuthService, public memberService: MemberService) { }
 
   ngOnInit() {
     this.form1 = new FormGroup({
@@ -60,7 +59,8 @@ export class ProfileComponent implements OnInit {
             email: memberData.email,
             height: memberData.height,
             weight: memberData.weight,
-            profile_image: memberData.profile_image
+            profile_image: memberData.profile_image,
+            profession: memberData.profession
           };
           if (memberData.profile_image != "") {
             //console.log(memberData.profile_image);
@@ -91,76 +91,71 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-
   //converts string to blob 
   dataURItoBlob(dataURI: string) {
-    const byteString = window.atob(dataURI);
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const int8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < byteString.length; i++) {
-      int8Array[i] = byteString.charCodeAt(i);
-    }
-    const blob = new Blob([int8Array], { type: 'image/png' });
-    return blob;
-  }
-
+      const byteString = window.atob(dataURI);
+      const arrayBuffer = new ArrayBuffer(byteString.length);
+      const int8Array = new Uint8Array(arrayBuffer);
+      for (let i = 0; i < byteString.length; i++) {
+        int8Array[i] = byteString.charCodeAt(i);
+      }
+      const blob = new Blob([int8Array], { type: 'image/png' });
+      return blob;
+  };
   onUpdate(form1: NgForm) {
-    if (this.form1.invalid) {
-      return;
-    } else {
-      this.memberService.updateMember(
-        this.member.id,
-        this.form1.value.first_name,
-        this.form1.value.last_name,
-        this.form1.value.email,
-        this.member.password,
-        this.form1.value.height,
-        this.form1.value.weight,
-        this.member.profile_image
-      );
-    }
+      if (this.form1.invalid) {
+        return;
+      } else {
+        this.memberService.updateMember(
+          this.member.id,
+          this.form1.value.first_name,
+          this.form1.value.last_name,
+          this.form1.value.email,
+          this.member.password,
+          this.form1.value.height,
+          this.form1.value.weight,
+          this.member.profile_image
+        );
+      }
   };
   onChangePass(form2: NgForm) {
-    if (this.form2.invalid) {
-      return;
-    } else {
-      this.memberService.changePass(
-        this.member.id,
-        this.form2.value.old_pass,
-        this.form2.value.new_pass,
-        this.form2.value.renew_pass
-      );
-    }
-  }
-
-
+      if (this.form2.invalid) {
+        return;
+      } else {
+        this.memberService.changePass(
+          this.member.id,
+          this.form2.value.old_pass,
+          this.form2.value.new_pass,
+          this.form2.value.renew_pass
+        );
+      }
+  };
   onImagePicked(event: Event) {
-    let htmlFiles = (event.target as HTMLInputElement).files;
-    let file: Blob = new Blob();
-    if (htmlFiles != null) {
-      file = htmlFiles[0];
-      console.log(typeof (file));
-      //this.memberService.convertToBase64(htmlFiles[0]);
-    }
-    this.form3.patchValue({ image: file });
-    this.form3.get('image').updateValueAndValidity();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
+      let htmlFiles = (event.target as HTMLInputElement).files;
+      let file: Blob = new Blob();
+      if (htmlFiles != null) {
+        file = htmlFiles[0];
+        console.log(typeof (file));
+        //this.memberService.convertToBase64(htmlFiles[0]);
+      }
+      this.form3.patchValue({ image: file });
+      this.form3.get('image').updateValueAndValidity();
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+  };
   async onUpdateImage(form3: NgForm) {
-    if (this.form3.invalid) {
-      return;
-    } else {
-      await this.memberService.updatePicture(
-        this.member.id,
-        this.member.first_name,
-        this.form3.value.image
-      );
-    }
-  }
+      if (this.form3.invalid) {
+        return;
+      } else {
+        await this.memberService.updatePicture(
+          this.member.id,
+          this.member.first_name,
+          this.form3.value.image
+        );
+      }
+  };
 
 }
