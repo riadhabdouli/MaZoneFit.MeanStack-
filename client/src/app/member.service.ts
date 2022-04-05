@@ -42,7 +42,7 @@ export class MemberService {
       profession: string;
     }>("http://localhost:3000/auth/profile/" + userId);
   }
-  updateMember(id: string, first_name: string, last_name: string, email: string, password: string, height: string, weight: string, profile_image:string) {
+updateMember(id: string, first_name: string, last_name: string, email: string, password: string, height: string, weight: string, profile_image:string) {
     let memberData: memberData;
     memberData = {
       id: id,
@@ -58,9 +58,9 @@ export class MemberService {
       .subscribe(Response => {
         this.router.navigate(["/"]);
       })
-  };
+};
 
-  changePass(id: string, old_pass: string, new_pass: string, renew_pass: string) {
+changePass(id: string, old_pass: string, new_pass: string, renew_pass: string) {
     let passData: any;
     passData = {
       old_password: old_pass,
@@ -71,9 +71,9 @@ export class MemberService {
       .subscribe(Response => {
         this.router.navigate(["/"]);
       })
-  }
+};
 
-  async updatePicture(id: string, username: string, image: File) {
+async updatePicture(id: string, username: string, image: File) {
     await this.convertToBase64(image);
     let a = new FormData();
     a.append("image", this.imageD);
@@ -82,16 +82,16 @@ export class MemberService {
         this.router.navigate(["/"]);
       });
 
-  }
+};
 
-  async convertToBase64(file: File) {
+async convertToBase64(file: File) {
     const observable = new Observable((subscriber: Subscriber<any>) => {
       this.readFile(file, subscriber);
     });
     this.imageD = await observable.toPromise();
-  }
+};
 
-  readFile(file: File, subscriber: Subscriber<any>) {
+readFile(file: File, subscriber: Subscriber<any>) {
     const filereader = new FileReader();
     filereader.readAsDataURL(file);
     filereader.onload = () => {
@@ -102,10 +102,13 @@ export class MemberService {
       subscriber.error(error);
       subscriber.complete();
     };
-  }
+};
 
-  getImage(img:string){
+getImage(img:string){
     console.log("img service")
     return this.http.get<{ content: string }>("http://localhost:3000/auth/profileimg/" + img);
-  }
+};
+
+
+
 }

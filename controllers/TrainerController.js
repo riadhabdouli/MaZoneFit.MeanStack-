@@ -88,7 +88,6 @@ exports.login = async (req, res) => {
     });
   }
 };
-
 exports.check_auth = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
@@ -102,17 +101,6 @@ exports.check_auth = (req, res, next) => {
     res.status(401).json({ message: "Auth failed !" });
   }
 };
-
-exports.getTrainer = (req, res) => {
-  trainer.find({ _id: req.param("id") }).then((memberData) => {
-    if (memberData) {
-      res.status(200).json(memberData[0].toObject());
-    } else {
-      res.status(404).json({ message: "Member not found !" });
-    }
-  });
-};
-
 exports.updateTrainer = (req, res) => {
   const trainerData = new trainer({
     _id: req.body.id,
@@ -188,7 +176,6 @@ exports.change_password = async (req, res) => {
     });
   }
 };
-
 exports.updatePicture = (req, res) => {
   var matches = req.body.image.match(/^data:([A-Za-z-+/]+);base64,(.+)$/),
     response = {};
@@ -214,7 +201,6 @@ exports.updatePicture = (req, res) => {
       }
     });
 };
-
 exports.getImage = (req, res) => {
   let img = __dirname + "\\images\\" + req.params.img;
   if (fs.existsSync(img)) {
@@ -232,3 +218,12 @@ exports.getImage = (req, res) => {
   });
 };
 
+exports.getTrainer = (req, res) => {
+  trainer.find({ _id: req.param("id") }).then((memberData) => {
+    if (memberData) {
+      res.status(200).json(memberData[0].toObject());
+    } else {
+      res.status(404).json({ message: "Trainer not found !" });
+    }
+  });
+};
