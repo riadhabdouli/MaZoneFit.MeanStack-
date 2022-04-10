@@ -9,3 +9,4 @@ export interface workoutData {
 	Saturday: Array<string>;
 	Sunday: Array<string>;
 };
+

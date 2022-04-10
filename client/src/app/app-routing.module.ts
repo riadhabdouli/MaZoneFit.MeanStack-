@@ -16,7 +16,9 @@ const routes: Routes = [
   { path: 'register' , component:RegisterComponent},
   { path: 'trainerview', component:TrainerViewComponent},
   { path: 'workout/:id', component: workoutPlan },
-  { path: 'nutrition/:id', component: nutrtionPlan }
+  { path: 'nutrition/:id', component: nutrtionPlan },
+  { path: 'nutrition', component: nutrtionPlan },
+  { path: 'workout', component: workoutPlan }
 ];
 
 @NgModule({

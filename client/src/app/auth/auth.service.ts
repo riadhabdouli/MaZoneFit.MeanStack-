@@ -53,9 +53,21 @@ export class AuthService {
       height: string;
       weight: string; 
       profile_image:string;
+      profession:string;
     }>("http://localhost:3000/auth/profile/"+userId);
   };
 
+  getTrainer(userId: string){
+    return this.http.get<{
+      _id: string;
+      first_name: string;
+      last_name: string;
+      email: string;
+      profile_image:string;
+      profession:string;
+      members: Array<String>;
+    }>("http://localhost:3000/auth/profile/"+userId);
+  };
     login(email: string ,password: string ) {
       this.userEmail = email;
       const authData: AuthData = {email: email, password : password};
