@@ -5,5 +5,6 @@ export interface TrainerData {
 	email: string;
 	password: string;
     introduction: String;
-    profile_image: string
+    profile_image: string;
+	members: Array<string>;
 }

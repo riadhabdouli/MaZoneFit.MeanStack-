@@ -10,7 +10,7 @@ body{
 
 mat-card{
     width: 1000px;
- height: 500px;
+ height: 550px;
  margin-left: 250px;
  margin-top: 50px;
 }
@@ -28,8 +28,13 @@ h3{
    display: inline; 
    margin: 32px;
 }
-button{
+.savePlan{
     margin-left: 800px;
     width: 100px;
     height: 40px;
 }
+
+.membersLab{
+    margin-left: 280px;
+}
+

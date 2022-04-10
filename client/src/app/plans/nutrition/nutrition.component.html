@@ -1,6 +1,17 @@
 <body>
     <mat-card class="profile-details">
         <mat-card-title>Nutrition Plan</mat-card-title>
+        <div class="membersLab">
+        <label for="membersLab">Choose a member :</label>
+        &nbsp; &nbsp;
+        <select name="membersLab" id="membersLab" >
+             <option value="rigatoni">Rigatoni</option>
+             <option value="dave">Dave</option>
+             <option value="pumpernickel">Pumpernickel</option>
+             <option value="reeses">Reeses</option>
+        </select> &nbsp;  &nbsp;
+        <button mat-raised-button color="primary" type="button" class="editPlan">Edit Plan</button>
+      </div>
         <br>
       <form [formGroup]="nutriForm" id="nutriForm" >  
           <div class="Monday">
@@ -98,7 +109,7 @@
     </div>
 
     <br>
-        <button mat-raised-button color="primary" type="submit">Save Plan</button>
+        <button mat-raised-button color="primary" type="submit" class="savePlan">Save Plan</button>
       </form>
      </mat-card>
 </body>

@@ -12,6 +12,5 @@ router.post("/change-password/:id", MemberController.change_password);
 router.post("/profileimg/:id", MemberController.updatePicture);
 router.get("/profileimg/:img", MemberController.getImage);
 
-router.put("/addmember/:id", MemberController.addMember);
 
 module.exports = router;

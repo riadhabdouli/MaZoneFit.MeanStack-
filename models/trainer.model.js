@@ -8,9 +8,9 @@ const schema = new mongoose.Schema(
     password: String,
     profile_image: { type: String, default: "" },
     profession: { type: String, default: "trainer" },
-    members: [{
-      type: String
-    }]
+    members: [
+      {mid : String , name: String}
+    ]
   },
   {
     timestamps: true,

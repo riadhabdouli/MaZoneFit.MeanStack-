@@ -35,3 +35,13 @@ exports.getNPlan = (req,res)=> {
       }
     });
   }
+
+  exports.getWPlan = (req,res)=> {
+    wPlan.find({ memberId: req.param("id")}).then((wData) => {
+      if (wData) {
+        res.status(200).json(wData[0].toObject());
+      } else {
+        res.status(404).json({ message: "Plan not found !" });
+      }
+    });
+  }

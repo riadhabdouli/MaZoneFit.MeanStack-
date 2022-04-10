@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
+const member = require('../models/member.model');
 
 exports.register = async (req, res) => {
   const v = new Validator(req.body, {
@@ -232,10 +233,17 @@ exports.getImage = (req, res) => {
   });
 };
 
-exports.addMember= (req,res) => {
-  let Tid = req.params.id;
-  let Mid = req.body.memberId;
-  trainer.updateOne({ _id: Tid }, { $push: {members: Mid} }).then((result) => {
+exports.addMember =(req,res) => {
+  console.log("test");
+  var memberdat = 
+    {mid : req.body.mid , name:  req.body.name};
+  console.log(memberdat);
+ /* let trainerData =await  trainer.findOne({  _id: req.params.id });
+   console.log(trainerData);
+  console.log(req.body.mail);
+  console.log(req.body.memberName); */
+  let mail =  req.body.mail ;
+  trainer.updateOne({ _id:  req.params.id }, { $push: {members: memberdat} }).then((result) => {
     if (result.modifiedCount > 0) {
       res.status(200).json({ message: "Update successful !" });
     } else {
