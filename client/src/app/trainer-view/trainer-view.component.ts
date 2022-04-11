@@ -15,24 +15,21 @@ export class TrainerViewComponent implements OnInit {
   TrainerData: TrainerData[] = [];
   details: any;
   image: any;
-
   private TrainerId: any;
+
+
   constructor(public route: ActivatedRoute, public trainerService: TrainerService) { }
 
 
 
   ngOnInit() {
-    this.details = new FormGroup({
-      first_name: new FormControl(null, { validators: [] }),
-      last_name: new FormControl(null, { validators: [] }),
-      introduction: new FormControl(null, { validators: [] })
-    });
-    this.image = new FormGroup({
-      image: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
-      })
-    });
+
+    this.getTrainer();
+  }
+
+  getTrainer(){
+    console.log("test");
+
 
     
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -46,18 +43,15 @@ export class TrainerViewComponent implements OnInit {
             profile_image: trainerData.profile_image,
             introduction: "test"
           };
+          console.log("sdfasdf",this.trainer);
 
-          console.log("sdfasdf");
-          this.details.setValue({
-            first_name: this.trainer.first_name,
-            last_name: this.trainer.last_name,
-            introduction: this.trainer.introduction
-          });
+          
          
-          console.log('this.details',this.details);
+         
         })
       }
     });
-  }
+     
+    }
+  };
 
-}

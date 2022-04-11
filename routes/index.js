@@ -13,8 +13,8 @@ module.exports=(app)=>{
 	app.use('/profile',MemberRouter);
 
 	app.use('/auth/trainer',TrainerRouter);
-	app.use('/profile/trainer',TrainerRouter);
-
+	app.use('/trainer/profile',TrainerRouter);
+	
 	app.use('/user',UserRouter);
 	app.use('/plan',plansRouter);
 

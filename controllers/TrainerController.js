@@ -105,11 +105,11 @@ exports.check_auth = (req, res, next) => {
 };
 
 exports.getTrainer = (req, res) => {
-  trainer.find({ _id: req.param("id") }).then((memberData) => {
-    if (memberData) {
-      res.status(200).json(memberData[0].toObject());
+  trainer.find({ _id: req.param("id") }).then((TrainerData) => {
+    if (TrainerData) {
+      res.status(200).json(TrainerData[0].toObject());
     } else {
-      res.status(404).json({ message: "Member not found !" });
+      res.status(404).json({ message: "Trainer not found !" });
     }
   });
 };
