@@ -35,12 +35,13 @@ export class TrainerViewComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("id")) {
         this.TrainerId = paramMap.get('id');
-        this.trainerService.getTrainer(this.TrainerId).subscribe(trainerData => {
+        
+        this.trainerService.getTrainer(this.TrainerId).subscribe(data => {
           this.trainer = {
-            id: trainerData._id,
-            first_name: trainerData.first_name,
-            last_name: trainerData.last_name,
-            profile_image: trainerData.profile_image,
+            id: data._id,
+            first_name: data.first_name,
+            last_name: data.last_name,
+            profile_image: data.profile_image,
             introduction: "test"
           };
           console.log("sdfasdf",this.trainer);
